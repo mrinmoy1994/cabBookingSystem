@@ -26,7 +26,7 @@ public class UserControllerImpl implements UserController {
     }
 
     @Override
-    public CabDetails bookCab(String userId, String cabId) {
+    public CabDetails bookCab(String userId, String cabId) throws Exception {
         return userService.bookCab(userId, cabId);
     }
 }

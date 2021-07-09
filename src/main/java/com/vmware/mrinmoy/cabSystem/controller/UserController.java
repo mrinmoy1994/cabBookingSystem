@@ -19,5 +19,5 @@ public interface UserController {
     @GetMapping(path = "/getDrivers")
     public List<User> getDrivers(@RequestBody User user);
     @GetMapping(path = "/bookCab")
-    public CabDetails bookCab(@RequestParam("userId") String userId, @RequestParam("cabId") String cabId);
+    public CabDetails bookCab(@RequestParam("userId") String userId, @RequestParam("cabId") String cabId) throws Exception;
 }

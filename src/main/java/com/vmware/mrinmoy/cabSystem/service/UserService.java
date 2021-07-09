@@ -51,8 +51,10 @@ public class UserService {
         return resultList;
     }
 
-    public CabDetails bookCab(String userId, String cabId) {
+    public CabDetails bookCab(String userId, String cabId) throws Exception {
         CabDetails cabDetails = userRepo.findById(cabId).get().getCabDetails();
+        if(!cabDetails.isFree())
+            throw new Exception("Cab busy");
         cabDetails.setFree(false);
         cabDetails.setCustomerId(userId);
         return cabDetails;
