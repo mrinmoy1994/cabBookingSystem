@@ -17,7 +17,7 @@ public interface UserController {
     @GetMapping(path = "/{userId}")
     public User getUser(@RequestParam("userId") String id);
     @GetMapping(path = "/getDrivers")
-    public List<CabDetails> getDrivers(@RequestBody User user);
+    public List<User> getDrivers(@RequestBody User user);
     @GetMapping(path = "/bookCab")
-    public Object bookCab(@RequestParam("userId") String userId, @RequestParam("cabId") String cabId);
+    public CabDetails bookCab(@RequestParam("userId") String userId, @RequestParam("cabId") String cabId);
 }

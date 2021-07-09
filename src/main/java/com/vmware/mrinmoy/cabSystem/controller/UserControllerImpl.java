@@ -21,12 +21,12 @@ public class UserControllerImpl implements UserController {
     }
 
     @Override
-    public List<CabDetails> getDrivers(User user) {
+    public List<User> getDrivers(User user) {
         return userService.getDrivers(user);
     }
 
     @Override
-    public Object bookCab(String userId, String cabId) {
+    public CabDetails bookCab(String userId, String cabId) {
         return userService.bookCab(userId, cabId);
     }
 }

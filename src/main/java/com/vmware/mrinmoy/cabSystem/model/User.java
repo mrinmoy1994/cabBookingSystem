@@ -29,4 +29,5 @@ public class User {
     private String mailId;
     private UserType type;
     private String location;
+    private CabDetails cabDetails;
 }

@@ -27,7 +27,7 @@ public class UserService {
         return userRepo.getOne(id);
     }
 
-    public List<CabDetails> getDrivers(User user) {
+    public List<User> getDrivers(User user) {
         List<User> userList = userRepo.findAll().stream().filter(user1 -> (user1.getType().compareTo(UserType.DRIVER) == 0))
                 .collect(Collectors.toList());
         List<Double> disList = new ArrayList<>();
@@ -40,21 +40,21 @@ public class UserService {
         });
 
         Collections.sort(disList);
-        List<String> resultList = userList.stream().filter(user1 -> {
+        List<User> resultList = userList.stream().filter(user1 -> {
             String[] loc = user1.getLocation().split(",");
             String[] loc1 = user.getLocation().split(",");
             double dis = Math.sqrt(Math.pow(((Integer.parseInt(loc[0])) - Integer.parseInt(loc1[0])) ,2)
                     + Math.pow ((Integer.parseInt(loc[0]) - Integer.parseInt(loc1[0])),2));
             return (dis == disList.get(0));
-        }).map(user1 -> user1.getId()).collect(Collectors.toList());
+        }).collect(Collectors.toList());
 
-        return cabRepo.finallAllByDriverId(resultList);
+        return resultList;
     }
 
-    public Object bookCab(String userId, String cabId) {
-        CabDetails cabDetails = cabRepo.findById(cabId).get();
+    public CabDetails bookCab(String userId, String cabId) {
+        CabDetails cabDetails = userRepo.findById(cabId).get().getCabDetails();
         cabDetails.setFree(false);
         cabDetails.setCustomerId(userId);
-        return null;
+        return cabDetails;
     }
 }

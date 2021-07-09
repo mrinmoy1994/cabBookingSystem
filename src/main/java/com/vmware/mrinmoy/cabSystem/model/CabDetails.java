@@ -18,7 +18,6 @@ import javax.persistence.Table;
 @AllArgsConstructor
 public class CabDetails {
     private String id;
-    private String driverId;
     private String customerId;
     private String location;
     private boolean free;
